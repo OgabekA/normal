@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,171 +5,119 @@
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 		  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<title>Document</title>
+	<style>
+        body {
+            width: 100%;
+            height: 700px;
+            background-color: darkgray;
+        }
+
+        .my_from {
+            width: 100%;
+            border-top: 5px solid #e1c089;
+            border-bottom: 5px solid #daba89;
+            height: auto;
+            text-align: center;
+            background-color: antiquewhite;
+        }
+
+        .box {
+            width: 80%;
+            height: 100%;
+            margin: auto;
+            text-align: center !important;
+        }
+
+        .my_table {
+            width: 100%;
+            border-top: 5px solid #e1c089;
+            border-bottom: 5px solid #daba89;
+            height: auto;
+            text-align: center;
+            background-color: antiquewhite;
+        }
+
+        .box table {
+            width: 60%;
+            height: auto;
+            margin: auto;
+        }
+
+        .box table td {
+            text-align: left;
+        }
+
+        .box table tr {
+            text-align: right;
+        }
+
+        .button {
+            text-align: center !important;
+        }
+	</style>
 </head>
 <body>
 <?php
-$qty=0;
-$parms = $_GET;
-$id = $parms['id']??0;
-$qty = $parms['qty']??0;
-
-if ($qty>0) {
-		$qty = $_SESSION['products']['qty'] += $qty;
-		$_SESSION['products'] = [
-				'id' => $id,
-				'qty' => $qty
-		];
-}
-
-
-function display_select_options()
-{
-		for ($i = 1; $i <= 10; $i++) {
-				echo "<option name='product$i' value=\"$i\">$i</option>";
-		}
-}
-
+$rows = $_GET['rows'] ?? 5;
+$cols = $_GET['cols'] ?? 5;
+$color = $_GET['color'] ?? '#fff';
 ?>
-
 <div class="container-fluid">
-	<div class="shopping_cart">
-			<?php echo  $_SESSION['products']['qty']; ?>
+	<div class="my_from">
+		<div class="box">
+			<form>
+				<table class="table table-bordered">
+					<tr>
+						<th><label for="exampleInputPassword1">Rows</label></th>
+						<td><input min="0" max="100" type="number" value="<? echo $rows; ?>" name="rows" required="required"></td>
+					</tr>
+					<tr>
+						<th><label for="exampleInputEmail1">Cols</label></th>
+						<td><input min="0" max="100" type="number" value="<? echo $cols; ?>" name="cols" required="required"></td>
+					</tr>
+					<tr>
+						<th><label for="exampleInputPassword1">is Even</label></th>
+						<td><input type="checkbox"></td>
+					</tr>
+					<tr>
+						<th><label for="exampleInputPassword1">Color</label></th>
+						<td><input type="color" name="color" value="<?php echo $color; ?>"></td>
+					</tr>
+					<tr>
+						<td class="button" colspan="2">
+							<button type="submit" class="btn btn-primary">GENERATE</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</div>
-	
-	<h4>Our Products</h4>
-	<table class="table table-bordered">
-		<tr>
-			<th>Image</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price</th>
-			<th>QTY</th>
-		</tr>
-				<tr>
-					<td>
-						<img class="product_icon" src="https://zdnet4.cbsistatic.com/hub/i/r/2020/10/21/25999ae5-5538-41da-b025-eb44ce8b8c81/resize/1200xauto/b82044831c8ab0ed40a66911565aeb10/iphone-12-pro-max-blue-hero.png">
-					</td>
-					<td>Iphone 12 Pro Max</td>
-					<td>Iphone 12 Pro Max 2020 512 GB</td>
-					<td>$1,299.99</td>
-					<td>
-						<form>
-							<select name="qty">
-									<?php
-									display_select_options();
-									?>
-							</select>
-							<input name="id" type="hidden" value="10">
-							<input value="" class="product" type="submit" name="sbt_btn">
-						</form>
-					</td>
-				</tr>
-		<tr>
-			<td>
-				<img class="product_icon" src="https://images.samsung.com/is/image/samsung/levant/galaxy-note20/gallery/levant-galaxy-note20-ultra-n985-sm-n985fzngmid-frontmysticbronze-thumb-274061473?">
-			</td>
-			<td>Note 20 Ultra 5G</td>
-			<td>Samsung Galaxy Note 20 Ultra 5G</td>
-			<td>$1,299.99</td>
-			<td>
-				<form>
-					<select name="qty">
-							<?php
-							display_select_options();
-							?>
-					</select>
-					<input name="id" type="hidden" value="10">
-					<input value="" class="product" type="submit" name="sbt_btn">
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<img class="product_icon" src="https://i2.wp.com/www.mac-ave.com/wp-content/uploads/2016/10/MBP13RD-2016_PSOpen_US-EN-SCREEN.png?fit=1024%2C910&ssl=1">
-			</td>
-			<td>MacBook</td>
-			<td>MacBook Pro 13 inch</td>
-			<td>$1,999.99</td>
-			<td>
-				<form>
-					<select name="qty">
-							<?php
-							display_select_options();
-							?>
-					</select>
-					<input name="id" type="hidden" value="10">
-					<input value="" class="product" type="submit" name="sbt_btn">
-				</form>
-			</td>
-		</tr>
-	</table>
+	<hr>
+	<div class="my_table">
+		<table class="table table-bordered">
+				<?php
+				$number = 0;
+				for ($row = 0; $row < $rows; $row ++) {
+						echo "<tr>";
+						for ($col = 0; $col < $cols; $col ++) {
+								$number ++;
+								if ($number % 2 === 0) {
+										echo "<td style='background-color:$color'>$number</td>";
+								} else {
+										echo "<td>$number</td>";
+								}
+						}
+						echo "</tr>";
+				}
+				?>
+		</table>
+	</div>
 </div>
-<style>
-	.product {
-		background-image: url("https://cdn3.iconfinder.com/data/icons/ecommerce-flat-style-2/512/e_-_Commerce_-_Flat_Style_2-05-128.png");
-		background-size: 100% 100%;
-		background-position: center;
-		width: 29px;
-		position: relative;
-		top: 9px;
-	}
-	
-	.shopping_cart {
-		width: 40px;
-		height: 40px;
-		position: absolute;
-		right: 20px;
-		top: 20px;
-		z-index: 100;
-		background-image: url("https://i.pinimg.com/originals/5d/26/a1/5d26a173f443cbd190e34481438d474b.png");
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		line-height: 38px;
-		color: red;
-		font-weight: bolder;
-		border: none !important;
-	}
-	
-	.sh_add_btn {
-		width: 30px;
-	}
-	
-	tr:hover {
-		background-color: #b3e096 !important;
-		cursor: pointer;
-	}
-	
-	th {
-		background-color: #033b6e;
-		color: whitesmoke;
-	}
-	
-	tr:nth-child(even) {
-		background-color: lightgrey;
-	}
-	
-	.product_icon {
-		width: 70px;
-	}
-	
-	h4 {
-		color: lightgreen;
-	}
-	
-	table {
-		background-color: whitesmoke;
-	}
-	
-	.container-fluid {
-		text-align: center;
-	}
-	
-	body {
-		background-color: #392222;
-	}
-</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
 </body>
 </html>
