@@ -42,7 +42,7 @@ header {
 }
 
 .navbar-brand:hover {
-    color: white !important;
+    color: #000000 !important;
 }
 
 .navbar-toggler-icon {
@@ -85,7 +85,7 @@ h6 {
     box-shadow: 4px 4px 10px 9px darkgrey;
 }
 
-.card-img-top {
+.img_cart{
     width: 100%;
     height: auto;
 }
@@ -94,14 +94,26 @@ h6 {
     background-color: #f8f9fa !important;
     color: black;
 }
-.certificates{
-    width:100%;
-    height:auto;
-    border:1px solid black;
+
+.certificates {
+    width: 100%;
+    height: auto;
 }
+
 .card-group {
     width: 320px;
     height: 300px;
     margin: auto;
-    display:inline-block!important;
+    display: inline-block !important;
+}
+
+.certificate {
+    width: 15rem !important;
+    height: auto;
+}
+
+.img_certificate {
+    width: 90% !important;
+    height: auto !important;
+    margin: auto;
 }

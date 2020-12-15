@@ -77,11 +77,12 @@ include "database/certificate.php";
 	</div>
 	<!-- Section Number One -->
 	<section class="carts">
+			<div class="title"><h4>Carts</h4></div>
 			<?
 			foreach ($result as $item) {
 					?>
 				<div class="card">
-					<img src="img/small_cart.png" class="card-img-top" alt="...">
+					<img src="img\<? echo $item['img']; ?>" class="card-img-top img_cart" alt="...">
 					<div class="card-body">
 						<p class="card-text"><? echo $item['description']; ?></p>
 					</div>
@@ -95,13 +96,14 @@ include "database/certificate.php";
 	</section>
 	<!-- Section Number Two -->
 	<section class="certificates">
+		<div class="title"><h4>Certificates</h4></div>
 			<?php
-			foreach ($certificates as $certificate){ ?>
-		<div class="card-group">
-			<div class="card">
-				<img src="..." class="card-img-top" alt="...">
-			</div>
-		</div>
+			foreach ($certificates as $certificate) { ?>
+				<div class="card-group">
+					<div class="card certificate">
+						<img src="img\<? echo $certificate['img']; ?>" class="card-img-top img_certificate" alt="...">
+					</div>
+				</div>
 			<?php } ?>
 	</section>
 </div>
