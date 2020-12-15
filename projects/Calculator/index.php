@@ -10,62 +10,12 @@
 	<link rel="icon" href="https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/calculator-icon.png">
 	<script type="text/javascript" src="/bootstrap/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
-		
-		$(function () {
-			let sign = '';
-			let number = '';
-			let number1 = '';
-			let number2 = '';
-			let formula = '';
-			$(".number").click(function () {
+		$(function (){
+			$('.number').click(function (){
 				number = $(this).text();
-				if (sign !== '') {
-					number = number1 += $(this).text();
-				} else {
-					number = number2 += $(this).text();
-				}
 				$(".screen").html(number);
-				display_result(number1 + sign + number2);
-				formula = eval(number1 + sign + number2);
-			});
-			$(".sign").click(function () {
-				sign = $(this).text();
-				if (sign == '×') {
-					sign = '*';
-				}
-				if (sign == '÷') {
-					sign = '/';
-				}
-				if (sign == '+') {
-					sign = '+';
-				}
-				if (sign == '-') {
-					sign = '-';
-				}
-				if (sign == 'AC') {
-					AC_buttons();
-				}
-				if (sign == '=') {
-					display_result();
-				}
 			});
 		});
-		
-		function AC_buttons(reset = false) {
-			sign = '';
-			number = '';
-			number1 = '';
-			number2 = '';
-			if (!reset) {
-				$(".screen").html(0);
-			}
-		}
-		
-		function display_result(num) {
-			if (formula === '') {
-				return false;
-			}
-		}
 	</script>
 	<style type="text/css">
         html, body {
@@ -117,8 +67,7 @@
             width: 100%;
             height: 100%;
             border: none !important;
-            border-collapse: collapse;
-        !important;
+            border-collapse: collapse!important;
         }
 
         button {
@@ -230,7 +179,7 @@
 						<button class="number">0</button>
 					</td>
 					<td>
-						<button id="sign">.</button>
+						<button id="number" class="number">.</button>
 					</td>
 					<td>
 						<button id="sign" class="sign btn btn-success">&equals;</button>
